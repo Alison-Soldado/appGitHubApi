@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">AppGitHubApi</string>
+    <string name="repository">Repository</string>
+    <string name="pull">Pull</string>
+
+    // Login
+    <string name="title">App GitHub</string>
+    <string name="email">E-mail:</string>
+    <string name="password">Senha:</string>
+    <string name="enter">Entrar</string>
+    <string name="contentEmail">exemplo@exemplo.com</string>
+    <string name="contentPassword">123</string>
+
+    // Toast
+    <string name="welcome">Bem Vindo!!!</string>
+    <string name="error">Não foi possível realizar a operação.</string>
+    <string name="notNetwork">Sem conexão com a internet.</string>
+
+    // Erro
+    <string name="msgErrorEmail">Preencha o campo usuário corretamente.</string>
+    <string name="msgErrorPassword">Preencha o campo senha corretamente.</string>
+    <string name="msgErrorEmailPass">Usuário ou senha incorretos.</string>
+    <string name="msgErrorEmailValid">Digite um e-mail válido.</string>
+
+    // Description
+    <string name="descActivity">Tela de login</string>
+    <string name="descTitle">Título do aplicativo</string>
+    <string name="descEmail">Preencha com seu e-mail</string>
+    <string name="descPass">Preencha com sua senha</string>
+    <string name="descEnter">Toque para entrar</string>
+
+    // Repository
+    <string name="searchRepository">Pesquisar</string>
+    <string name="exitApp">Sair</string>
+
+    // Pull Request
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="bar">/</string>
+</resources>
