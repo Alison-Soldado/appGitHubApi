@@ -1,7 +1,12 @@
 # App GitHub Api
 
-Este projeto foi desenvolvido em Kotlin e consome endpoints da API do GitHub, o primeiro
+Este projeto foi desenvolvido em Kotlin e consome dois endpoints da API do GitHub. O primeiro
 é uma lista de repositórios e o segundo é uma lista de pulls requests.
+
+Na tela inicial você terá que realizar a autenticação, então digite:
+
+- __Email:__ exemplo@exemplo.com
+- __Senha:__ 123
 
 # Arquitetura
 
