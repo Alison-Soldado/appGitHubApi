@@ -10,3 +10,11 @@ Nele foi utilizado a arquitetura MVP
 # Comunicação com API
 
 Foi utilizado a biblioteca chamada Retrofit
+
+# Testes Unitários
+
+Foi utilizado a biblioteca chamada Mockito
+
+# Testes Instrumentados
+
+Foi utilizado a biblioteca chamada Espresso
