@@ -7,6 +7,6 @@ Este projeto foi desenvolvido em Kotlin e consome endpoints da API do GitHub, o 
 
 Nele foi utilizado a arquitetura MVP
 
-#Comunicação com API
+# Comunicação com API
 
 Foi utilizado a biblioteca chamada Retrofit
