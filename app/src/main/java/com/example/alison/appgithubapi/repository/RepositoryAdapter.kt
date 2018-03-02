@@ -68,20 +68,18 @@ class RepositoryAdapter(private var items: ArrayList<Items>)
         private val imageUser = itemView.imgUser
 
         fun bindForecast(item: Items) {
-            with(item) {
-                Glide
-                        .with(App.instance)
-                        .load(item.owner.avatar_url)
-                        .centerCrop()
-                        .into(imageUser)
+            Glide
+                    .with(App.instance)
+                    .load(item.owner.avatar_url)
+                    .centerCrop()
+                    .into(imageUser)
 
-                username.text = item.owner.login
-                nameItem.text = item.name
-                descriptionItem.text = item.description
-                branchCount.text = item.forks_count.toString()
-                starCount.text = item.stargazers_count.toString()
-                itemView.setOnClickListener{showPull(item)}
-            }
+            username.text = item.owner.login
+            nameItem.text = item.name
+            descriptionItem.text = item.description
+            branchCount.text = item.forks_count.toString()
+            starCount.text = item.stargazers_count.toString()
+            itemView.setOnClickListener{showPull(item)}
         }
 
         private fun showPull(item: Items) {

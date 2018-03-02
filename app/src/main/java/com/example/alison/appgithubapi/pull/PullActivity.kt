@@ -23,6 +23,7 @@ class PullActivity : AppCompatActivity(), PullContract.View {
         setupPresenter()
         setupRecyclerView()
         setupList()
+        setupActionBar()
     }
 
     override fun showProgressBar() { pbPull.visibility = View.VISIBLE }
@@ -54,4 +55,6 @@ class PullActivity : AppCompatActivity(), PullContract.View {
         txtOpen.text = pullAdapter.itemCount.toString()
         txtClose.text = item.open_issues.toString()
     }
+
+    private fun setupActionBar() { supportActionBar!!.title = item.name }
 }

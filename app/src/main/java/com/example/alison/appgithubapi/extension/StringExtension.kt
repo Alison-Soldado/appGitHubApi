@@ -4,7 +4,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun String.formatToBrazil() : String {
+fun String.formatDataToFormatBrazil() : String {
     val formatDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     var enterData: Date? = null
     try {

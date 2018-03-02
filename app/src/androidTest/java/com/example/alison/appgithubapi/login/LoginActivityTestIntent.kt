@@ -23,8 +23,7 @@ class LoginActivityTestIntent {
         const val PASSWORD = "123"
     }
 
-    @Rule
-    @JvmField
+    @get:Rule
     var mIntentRule =
             IntentsTestRule(LoginActivity::class.java, false, true)
 

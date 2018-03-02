@@ -11,7 +11,7 @@ import com.example.alison.appgithubapi.App
 import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.data.model.pull.PullRequest
 import com.example.alison.appgithubapi.extension.ctx
-import com.example.alison.appgithubapi.extension.formatToBrazil
+import com.example.alison.appgithubapi.extension.formatDataToFormatBrazil
 import kotlinx.android.synthetic.main.item_pull.view.*
 
 class PullAdapter(private var pullRequest: ArrayList<PullRequest>)
@@ -38,19 +38,16 @@ class PullAdapter(private var pullRequest: ArrayList<PullRequest>)
         private val dataCreate = itemView.txtDataPull
 
         fun bindForecast(pullRequest: PullRequest) {
-            with(pullRequest) {
-                Glide
-                        .with(App.instance)
-                        .load(pullRequest.user.avatar_url)
-                        .centerCrop()
-                        .into(imageUserPull)
-
-            }
+            Glide
+                    .with(App.instance)
+                    .load(pullRequest.user.avatar_url)
+                    .centerCrop()
+                    .into(imageUserPull)
 
             title.text = pullRequest.title
             body.text = pullRequest.body
             nameFull.text = pullRequest.user.login
-            dataCreate.text = pullRequest.created_at.formatToBrazil()
+            dataCreate.text = pullRequest.created_at.formatDataToFormatBrazil()
             itemView.setOnClickListener{showPageWeb(pullRequest)}
         }
 

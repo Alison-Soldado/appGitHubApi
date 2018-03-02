@@ -89,10 +89,16 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
 
     // MockWebServer
-    testImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttpVersion"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttpVersion"
+
+    // local tests
+    testImplementation "br.com.concretesolutions:requestmatcher:2.2.0"
+
+    // instrumented tests
+    androidTestImplementation "br.com.concretesolutions:requestmatcher:2.2.0"
 
     // Mirror
-    testImplementation "net.vidageek:mirror:1.6.1"
+    androidTestImplementation "net.vidageek:mirror:1.6.1"
 
     // Espresso
     androidTestImplementation "com.android.support.test:rules:$rootProject.rulesVersion"
