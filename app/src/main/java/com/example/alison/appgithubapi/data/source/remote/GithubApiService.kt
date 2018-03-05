@@ -1,5 +1,6 @@
 package com.example.alison.appgithubapi.data.source.remote
 
+import com.example.alison.appgithubapi.BuildConfig
 import com.example.alison.appgithubapi.data.model.pull.PullRequest
 import com.example.alison.appgithubapi.data.model.repository.Result
 import io.reactivex.schedulers.Schedulers
@@ -33,7 +34,7 @@ interface GithubApiService {
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("https://api.github.com/")
+                    .baseUrl(BuildConfig.BASE_URL)
                     .client(client)
                     .build()
 

@@ -13,10 +13,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    def baseUrl = '"https://api.github.com/"'
+
     buildTypes {
         debug {
             minifyEnabled true
             useProguard false
+            buildConfigField 'String', 'BASE_URL', baseUrl
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
         }
@@ -24,6 +27,7 @@ android {
         release {
             minifyEnabled true
             useProguard true
+            buildConfigField 'String', 'BASE_URL', baseUrl
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
         }
@@ -90,12 +94,6 @@ dependencies {
 
     // MockWebServer
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttpVersion"
-
-    // local tests
-    testImplementation "br.com.concretesolutions:requestmatcher:2.2.0"
-
-    // instrumented tests
-    androidTestImplementation "br.com.concretesolutions:requestmatcher:2.2.0"
 
     // Mirror
     androidTestImplementation "net.vidageek:mirror:1.6.1"

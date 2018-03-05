@@ -19,7 +19,7 @@ ext {
     rxVersion = '2.0.1'
     circleImageVersion = '2.1.0'
     glideVersion = '3.7.0'
-    okhttpVersion = '3.9.1'
+    okhttpVersion = '3.10.0'
 }
 
 buildscript {
