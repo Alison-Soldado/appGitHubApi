@@ -34,7 +34,7 @@
     <string name="exitApp">Sair</string>
 
     // Pull Request
-    <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="open">Abertos</string>
+    <string name="close">Fechados</string>
     <string name="bar">/</string>
 </resources>
