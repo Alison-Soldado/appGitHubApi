@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled true
+            minifyEnabled false
             useProguard false
             buildConfigField 'String', 'BASE_URL', baseUrl
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
