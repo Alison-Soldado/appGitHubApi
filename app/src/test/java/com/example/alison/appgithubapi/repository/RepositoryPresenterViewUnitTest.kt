@@ -13,7 +13,6 @@ import org.mockito.MockitoAnnotations
 class RepositoryPresenterViewUnitTest {
 
     @Mock private lateinit var repositoryView : RepositoryContract.View
-    @Mock private lateinit var repositoryDataSource : DataSource.RepoDataSource
 
     private lateinit var repositoryPresenter : RepositoryContract.Presenter
     private var listItems : ArrayList<Items> = ArrayList()
@@ -41,14 +40,6 @@ class RepositoryPresenterViewUnitTest {
         repositoryPresenter.callBackList(listItems)
         // Assert
         verify(repositoryView).hideProgressBar()
-    }
-
-    @Test
-    fun givenNumberPages_WhenLoadListRepository_ThenRequestList() {
-        // Act
-        repositoryPresenter.loadListRepository()
-        // Assert
-        verify(repositoryDataSource).requestList()
     }
 
     @Test

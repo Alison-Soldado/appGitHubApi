@@ -3,9 +3,9 @@ package com.example.alison.appgithubapi.repository
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.scrollTo
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.SmallTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
@@ -19,7 +19,6 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 @SmallTest
 class RepositoryActivityTest {
-
 
     companion object {
         const val EMAIL = "exemplo@exemplo.com"
@@ -48,7 +47,6 @@ class RepositoryActivityTest {
     fun givenListRepository_WhenRequestNextList_ThenShowNextListRepository() {
         prepareUserLogged()
         initActivity()
-        scrollToBelow()
         verifyIfShowNextList()
     }
 
@@ -56,7 +54,6 @@ class RepositoryActivityTest {
     fun givenRequestNextList_WhenUserFinalPreviousList_ThenShowFooterBelow() {
         prepareUserLogged()
         initActivity()
-        scrollToBelow()
         verifyIfShowFooter()
     }
 
@@ -67,12 +64,16 @@ class RepositoryActivityTest {
         clickItemVerifyIntentShoot()
     }
 
-    private fun clickItemVerifyIntentShoot() {
+    @Test
+    fun givenRequestList_WhenClickButtonLogin_ThenShouldShowEmptyState() {
 
     }
 
-    private fun verifyIfShowEmailHeader() {
+    private fun clickItemVerifyIntentShoot() {
+    }
 
+    private fun verifyIfShowEmailHeader() {
+        onView(withText(EMAIL)).check(matches(isDisplayed()))
     }
 
     private fun prepareUserLogged() {
@@ -93,11 +94,7 @@ class RepositoryActivityTest {
 
     }
 
-    private fun scrollToBelow() {
-
-    }
-
     private fun verifyIfShowFooter() {
-
+        onView(withId(R.id.linearFooter)).perform(scrollTo()).check(matches(isDisplayed()))
     }
 }
