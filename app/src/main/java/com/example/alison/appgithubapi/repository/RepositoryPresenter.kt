@@ -1,16 +1,16 @@
 package com.example.alison.appgithubapi.repository
 
 import com.example.alison.appgithubapi.data.model.repository.Items
+import com.example.alison.appgithubapi.data.source.CallApi
 import com.example.alison.appgithubapi.data.source.local.UserDataSourceSP
 import com.example.alison.appgithubapi.data.source.remote.repository.RepositoryDataSource
 
 
 class RepositoryPresenter(private val repositoryView : RepositoryContract.View)
-    : RepositoryContract.Presenter {
-
+    : RepositoryContract.Presenter() {
     private lateinit var repositoryDataSource : RepositoryDataSource
-    private lateinit var userDataSourceSP : UserDataSourceSP
 
+    private lateinit var userDataSourceSP : UserDataSourceSP
     override fun start() {
         repositoryView.presenter = this
         repositoryDataSource = RepositoryDataSource(this)

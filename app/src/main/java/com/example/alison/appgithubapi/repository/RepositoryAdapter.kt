@@ -36,16 +36,8 @@ class RepositoryAdapter(private var items: ArrayList<Items>)
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(charSequence: CharSequence?): FilterResults {
-                val charString = charSequence.toString()
-
-                listRepositoryFilter = if (charString.isEmpty()) {
-                    items
-                } else {
-                    val filteredList = ArrayList<Items>()
-                    items.filterTo(filteredList) { it.name.toLowerCase().contains(charString) }
-                    filteredList
-                }
-
+                val textTyped = charSequence.toString()
+                listRepositoryFilter = filterListFor(textTyped)
                 val filterResults = Filter.FilterResults()
                 filterResults.values = listRepositoryFilter
                 return filterResults
@@ -56,6 +48,16 @@ class RepositoryAdapter(private var items: ArrayList<Items>)
                 notifyDataSetChanged()
             }
 
+        }
+    }
+
+    private fun filterListFor(charString: String): ArrayList<Items> {
+        return if (charString.isEmpty()) {
+            items
+        } else {
+            val filteredList = ArrayList<Items>()
+            items.filterTo(filteredList) { it.name.toLowerCase().contains(charString) }
+            filteredList
         }
     }
 

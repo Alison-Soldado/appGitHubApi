@@ -4,7 +4,7 @@ import com.example.alison.appgithubapi.data.model.pull.PullRequest
 import com.example.alison.appgithubapi.data.source.remote.pull.PullRequestDataSource
 
 
-class PullPresenter(private val pullView : PullContract.View) : PullContract.Presenter {
+class PullPresenter(private val pullView : PullContract.View) : PullContract.Presenter() {
 
     private lateinit var pullRequestDataSource: PullRequestDataSource
 

@@ -18,13 +18,13 @@ interface RepositoryContract {
         fun exitApplication()
     }
 
-    interface Presenter : BasePresenter {
-        fun getEmail()
-        fun loadListRepository()
-        fun loadNextListRepository()
-        fun callBackList(items : ArrayList<Items>)
-        fun callBackNextList(items : ArrayList<Items>)
-        fun verifyUserLogged()
-        fun clearSharedPreferencesAndExit()
+    abstract class Presenter : BasePresenter() {
+        abstract fun getEmail()
+        abstract fun loadListRepository()
+        abstract fun loadNextListRepository()
+        abstract fun callBackList(items : ArrayList<Items>)
+        abstract fun callBackNextList(items : ArrayList<Items>)
+        abstract fun verifyUserLogged()
+        abstract fun clearSharedPreferencesAndExit()
     }
 }

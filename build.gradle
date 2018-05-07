@@ -20,6 +20,7 @@ ext {
     circleImageVersion = '2.1.0'
     glideVersion = '3.7.0'
     okhttpVersion = '3.10.0'
+    requestVersion = '2.2.0'
 }
 
 buildscript {

@@ -95,6 +95,8 @@ dependencies {
     // MockWebServer
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttpVersion"
 
+    androidTestImplementation "br.com.concretesolutions:requestmatcher:$rootProject.requestVersion"
+
     // Mirror
     androidTestImplementation "net.vidageek:mirror:1.6.1"
 

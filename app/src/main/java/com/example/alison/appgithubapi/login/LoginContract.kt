@@ -16,8 +16,8 @@ interface LoginContract{
         fun showRepository()
     }
 
-    interface Presenter : BasePresenter {
-        fun login(email : String, password : String)
-        fun verifyUserLogged()
+    abstract class Presenter : BasePresenter() {
+        abstract fun login(email : String, password : String)
+        abstract fun verifyUserLogged()
     }
 }

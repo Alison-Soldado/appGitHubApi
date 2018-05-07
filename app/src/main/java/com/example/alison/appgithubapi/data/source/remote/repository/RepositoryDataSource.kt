@@ -1,47 +1,57 @@
 package com.example.alison.appgithubapi.data.source.remote.repository
 
-import com.example.alison.appgithubapi.data.source.DataSource
+import com.example.alison.appgithubapi.App
+import com.example.alison.appgithubapi.data.model.repository.Result
+import com.example.alison.appgithubapi.data.source.CallbackRequest
+import com.example.alison.appgithubapi.data.source.WebServiceImpl
+import com.example.alison.appgithubapi.data.source.remote.BaseRepository
 import com.example.alison.appgithubapi.repository.RepositoryPresenter
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
+import retrofit2.Response
 
+const val PAGE_START = 1
 
-class RepositoryDataSource(private val presenter: RepositoryPresenter): DataSource.RepoDataSource {
+class RepositoryDataSource(private val presenter: RepositoryPresenter): BaseRepository(presenter) {
 
-    companion object {
-        const val PAGE_START = 1
-    }
-
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private var PAGE_NEXT = 2
 
-    override fun requestList() {
-        val repository = SearchRepositoryProvider.provideSearchRepository()
-        compositeDisposable.add(
-                repository.searchRepository(PAGE_START)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe ({
-                            result ->
-                            presenter.callBackList(result.items)
-                        }, { error ->
-                            error.printStackTrace()
-                        })
-        )
+    fun requestList() {
+        call {
+            WebServiceImpl.getInstance(App.instance).instance.getRepositoryRequest(PAGE_START)
+                    .enqueue(object : CallbackRequest<Result>() {
+                        override fun success(response: Result) {
+                            presenter.callBackList(response.items)
+                        }
+
+                        override fun failureHttp(response: Response<Result>) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                        override fun failure(throwable: Throwable) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                    })
+        }
     }
 
-    override fun requestNextList() {
-        val repository = SearchRepositoryProvider.provideSearchRepository()
-        compositeDisposable.add(
-                repository.searchRepository(PAGE_NEXT)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe ({
-                            result ->
-                            presenter.callBackNextList(result.items)
+    fun requestNextList() {
+        call {
+            WebServiceImpl.getInstance(App.instance).instance.getRepositoryRequest(PAGE_NEXT)
+                    .enqueue(object : CallbackRequest<Result>() {
+                        override fun success(response: Result) {
+                            presenter.callBackList(response.items)
                             PAGE_NEXT++
-                        }, { error ->
-                            error.printStackTrace()
-                        })
-        )
-    }
+                        }
 
+                        override fun failureHttp(response: Response<Result>) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                        override fun failure(throwable: Throwable) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                    })
+        }
+    }
 }

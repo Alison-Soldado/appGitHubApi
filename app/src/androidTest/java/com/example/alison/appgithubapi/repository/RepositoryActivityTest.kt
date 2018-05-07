@@ -11,9 +11,15 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.util.PreferencesUtil
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import br.com.concretesolutions.requestmatcher.LocalTestRequestMatcherRule
+import br.com.concretesolutions.requestmatcher.RequestMatcherRule
+import br.com.concretesolutions.requestmatcher.model.HttpMethod
+import com.example.alison.appgithubapi.data.model.repository.Items
+import com.google.gson.Gson
 
 
 @RunWith(AndroidJUnit4::class)
@@ -28,6 +34,14 @@ class RepositoryActivityTest {
     @Rule
     @JvmField var mRepositoryActivityRule =
             ActivityTestRule(RepositoryActivity::class.java, false, false)
+
+    @Rule
+    val serverRule: RequestMatcherRule = LocalTestRequestMatcherRule()
+
+    @Before
+    fun setup(){
+        val rootUrl = serverRule.url("/")
+    }
 
     @Test
     fun givenEmailAndPasswordCorrect_WhenClickButtonLogin_ThenShowEmailInHeader() {
@@ -96,5 +110,23 @@ class RepositoryActivityTest {
 
     private fun verifyIfShowFooter() {
         onView(withId(R.id.linearFooter)).perform(scrollTo()).check(matches(isDisplayed()))
+    }
+
+    private fun prepareMockListRepository(){
+        val items = Gson().fromJson(readAssetFile("fixtures/success_list_repository.json"), Items::class.java)
+    }
+
+    private fun readAssetFile(file: String): String {
+        var bytesArray = ByteArray(0)
+        try {
+            val in_s = InstrumentationRegistry.getContext().assets.open(file)
+
+            bytesArray = ByteArray(in_s.available())
+            in_s.read(bytesArray)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return String(bytesArray)
     }
 }

@@ -22,23 +22,4 @@ interface GithubApiService {
     fun getPullRequest(
             @Path("login") login: String,
             @Path("name") name: String): io.reactivex.Observable<ArrayList<PullRequest>>
-
-    companion object Factory {
-
-        fun create(): GithubApiService {
-            val interceptor = HttpLoggingInterceptor()
-            interceptor.level = HttpLoggingInterceptor.Level.BODY
-
-            val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-
-            val retrofit = Retrofit.Builder()
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BuildConfig.BASE_URL)
-                    .client(client)
-                    .build()
-
-            return retrofit.create(GithubApiService::class.java)
-        }
-    }
 }

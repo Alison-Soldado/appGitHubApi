@@ -4,7 +4,7 @@ import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.data.source.local.UserDataSourceSP
 
 
-class LoginPresenter (private val loginView : LoginContract.View) : LoginContract.Presenter {
+class LoginPresenter (private val loginView : LoginContract.View) : LoginContract.Presenter() {
 
     private lateinit var userDataSourceSP : UserDataSourceSP
 

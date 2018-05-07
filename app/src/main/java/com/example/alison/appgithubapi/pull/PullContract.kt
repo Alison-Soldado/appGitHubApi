@@ -12,8 +12,8 @@ interface PullContract {
         fun loadList(pullRequests : ArrayList<PullRequest>)
     }
 
-    interface Presenter : BasePresenter {
-        fun loadListPulls(login: String, name: String)
-        fun callBackListPulls(pullRequests : ArrayList<PullRequest>)
+    abstract class Presenter : BasePresenter() {
+        abstract fun loadListPulls(login: String, name: String)
+        abstract fun callBackListPulls(pullRequests : ArrayList<PullRequest>)
     }
 }
