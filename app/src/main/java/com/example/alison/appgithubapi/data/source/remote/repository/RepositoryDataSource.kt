@@ -4,13 +4,11 @@ import com.example.alison.appgithubapi.data.source.DataSource
 import com.example.alison.appgithubapi.repository.RepositoryPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
+const val PAGE_START = 1
 
 class RepositoryDataSource(private val presenter: RepositoryPresenter): DataSource.RepoDataSource {
-
-    companion object {
-        const val PAGE_START = 1
-    }
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private var PAGE_NEXT = 2
@@ -19,6 +17,7 @@ class RepositoryDataSource(private val presenter: RepositoryPresenter): DataSour
         val repository = SearchRepositoryProvider.provideSearchRepository()
         compositeDisposable.add(
                 repository.searchRepository(PAGE_START)
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe ({
                             result ->
@@ -33,6 +32,7 @@ class RepositoryDataSource(private val presenter: RepositoryPresenter): DataSour
         val repository = SearchRepositoryProvider.provideSearchRepository()
         compositeDisposable.add(
                 repository.searchRepository(PAGE_NEXT)
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe ({
                             result ->
@@ -43,5 +43,4 @@ class RepositoryDataSource(private val presenter: RepositoryPresenter): DataSour
                         })
         )
     }
-
 }

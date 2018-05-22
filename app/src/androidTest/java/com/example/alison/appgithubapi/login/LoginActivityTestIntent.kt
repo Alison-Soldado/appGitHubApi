@@ -2,6 +2,8 @@ package com.example.alison.appgithubapi.login
 
 import android.app.Activity
 import android.app.Instrumentation
+import android.content.Intent
+import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.intent.Intents.intended
@@ -13,6 +15,8 @@ import android.support.test.filters.SmallTest
 import android.support.test.runner.AndroidJUnit4
 import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.repository.RepositoryActivity
+import com.example.alison.appgithubapi.util.PreferencesUtil
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,12 +30,18 @@ class LoginActivityTestIntent {
         const val PASSWORD = "123"
     }
 
-    @get:Rule
-    var mIntentRule =
-            IntentsTestRule(LoginActivity::class.java, false, true)
+    @Rule
+    @JvmField var mIntentRule =
+            IntentsTestRule(LoginActivity::class.java, false, false)
+
+    @Before
+    fun setup() {
+        prepareLogout()
+        mIntentRule.launchActivity(Intent())
+    }
 
     @Test
-    fun givenEmailAndPasswordCorrect_WhenClickOnLoginButton_ThenShouldShootIntent() {
+    fun givenClickOnLoginButton_WhenEmailAndPasswordCorrect_ThenShouldShootIntent() {
         onView(withId(R.id.edtEmailLogin)).perform(typeText(EMAIL), closeSoftKeyboard())
         onView(withId(R.id.edtPasswordLogin)).perform(typeText(PASSWORD), closeSoftKeyboard())
         val matcher = hasComponent(RepositoryActivity::class.java.name)
@@ -39,6 +49,11 @@ class LoginActivityTestIntent {
         intending(matcher).respondWith(activityResult)
         onView(withId(R.id.btnEnter)).perform(click())
         intended(matcher)
+    }
+
+    private fun prepareLogout() {
+        val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())
+        preferencesUtil.clearSP()
     }
 
 }

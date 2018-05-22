@@ -13,7 +13,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    def baseUrl = '"https://api.github.com/"'
+    def baseUrl = '"http://api.github.com/"'
 
     buildTypes {
         debug {
@@ -94,6 +94,9 @@ dependencies {
 
     // MockWebServer
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttpVersion"
+
+    // RequestMatcher
+    androidTestImplementation "br.com.concretesolutions:requestmatcher:$rootProject.requestMatcherVersion"
 
     // Mirror
     androidTestImplementation "net.vidageek:mirror:1.6.1"

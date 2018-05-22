@@ -20,11 +20,12 @@ ext {
     circleImageVersion = '2.1.0'
     glideVersion = '3.7.0'
     okhttpVersion = '3.10.0'
+    requestMatcherVersion = '2.2.0'
 }
 
 buildscript {
     ext.kotlin_version = '1.2.21'
-    ext.gradlePluginVersion = '3.0.1'
+    ext.gradlePluginVersion = '3.1.2'
 
     repositories {
         google()

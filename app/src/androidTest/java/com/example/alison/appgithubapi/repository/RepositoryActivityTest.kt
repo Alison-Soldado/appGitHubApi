@@ -1,79 +1,93 @@
 package com.example.alison.appgithubapi.repository
 
+
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
+import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.scrollTo
+import android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.SmallTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import com.example.alison.appgithubapi.BaseInstrumentedTest
 import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.util.PreferencesUtil
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+const val EMAIL = "exemplo@exemplo.com"
+const val PASSWORD = "123"
+const val TITLE_TOOLBAR_REPOSITORY = "Repository"
+const val TEXT_EXIT_APP = "Sair"
 
 @RunWith(AndroidJUnit4::class)
 @SmallTest
-class RepositoryActivityTest {
-
-    companion object {
-        const val EMAIL = "exemplo@exemplo.com"
-        const val PASSWORD = "123"
-    }
+class RepositoryActivityTest : BaseInstrumentedTest() {
 
     @Rule
     @JvmField var mRepositoryActivityRule =
             ActivityTestRule(RepositoryActivity::class.java, false, false)
 
-    @Test
-    fun givenEmailAndPasswordCorrect_WhenClickButtonLogin_ThenShowEmailInHeader() {
+    @Before
+    fun setup() {
         prepareUserLogged()
-        initActivity()
-        verifyIfShowEmailHeader()
     }
 
     @Test
-    fun givenEmailAndPasswordCorrect_WhenClickButtonLogin_ThenShowListRepositoryTest() {
-        prepareUserLogged()
+    fun givenLoginCorrect_WhenDisplayRepository_ThenShowToolbar() {
         initActivity()
-        verifyIfShowList()
+        onView(withId(R.id.toolbarRepository)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun givenListRepository_WhenRequestNextList_ThenShowNextListRepository() {
-        prepareUserLogged()
+    fun givenLoginCorrect_WhenLoadDisplayRepository_ThenShowTextInToolbar() {
         initActivity()
-        verifyIfShowNextList()
+        onView(withText(TITLE_TOOLBAR_REPOSITORY)).check(matches(withParent(withId(R.id.toolbarRepository))))
     }
 
     @Test
-    fun givenRequestNextList_WhenUserFinalPreviousList_ThenShowFooterBelow() {
-        prepareUserLogged()
+    fun givenLoginCorrect_WhenLoadDisplayRepository_ThenShowIconSearch() {
         initActivity()
-        verifyIfShowFooter()
+        onView(withId(R.id.searchRepository)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun givenListRepository_WhenUserClickItem_ThenShootIntentToPull() {
-        prepareUserLogged()
+    fun givenLoginCorrect_WhenLoadDisplayRepository_ThenShowMenu() {
         initActivity()
-        clickItemVerifyIntentShoot()
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
+        onView(withText(TEXT_EXIT_APP)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun givenLoginCorrect_WhenLoadDisplayRepository_ThenShowEmailHeader() {
+        initActivity()
+        onView(withId(R.id.txtWelcome)).check(matches(withText(EMAIL)))
+    }
+
+    @Test
+    fun givenLoginCorrect_WhenRequestSuccess_ThenShowListRepository() {
+        setupServerRule()
+        requestListRepository()
+        initActivity()
+        onView(withId(R.id.rvRepository)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun givenScrollToDown_WhenRequestNextList_ThenShowNextListRepository() {
+    }
+
+    @Test
+    fun givenScrollToDown_WhenRequestNextList_ThenShowProgressFooter() {
     }
 
     @Test
     fun givenRequestList_WhenClickButtonLogin_ThenShouldShowEmptyState() {
 
-    }
-
-    private fun clickItemVerifyIntentShoot() {
-    }
-
-    private fun verifyIfShowEmailHeader() {
-        onView(withText(EMAIL)).check(matches(isDisplayed()))
     }
 
     private fun prepareUserLogged() {
@@ -82,19 +96,11 @@ class RepositoryActivityTest {
         preferencesUtil.setSP("password", PASSWORD)
     }
 
+    private fun requestListRepository() {
+        serverRule.addFixture(200, "success_list_repository.json")
+    }
+
     private fun initActivity() {
         mRepositoryActivityRule.launchActivity(Intent())
-    }
-
-    private fun verifyIfShowList() {
-        onView(withId(R.id.rvRepository)).check(matches(isDisplayed()))
-    }
-
-    private fun verifyIfShowNextList() {
-
-    }
-
-    private fun verifyIfShowFooter() {
-        onView(withId(R.id.linearFooter)).perform(scrollTo()).check(matches(isDisplayed()))
     }
 }

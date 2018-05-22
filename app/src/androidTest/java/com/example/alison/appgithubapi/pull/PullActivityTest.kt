@@ -11,6 +11,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+const val EMAIL = "exemplo@exemplo.com"
+const val PASSWORD = "123"
+
 @RunWith(AndroidJUnit4::class)
 @SmallTest
 class PullActivityTest {
@@ -62,8 +65,8 @@ class PullActivityTest {
 
     private fun prepareUserLogged() {
         val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())
-        preferencesUtil.setSP("email", RepositoryActivityTest.EMAIL)
-        preferencesUtil.setSP("password", RepositoryActivityTest.PASSWORD)
+        preferencesUtil.setSP("email", EMAIL)
+        preferencesUtil.setSP("password", PASSWORD)
     }
 
     private fun initActivity() {
