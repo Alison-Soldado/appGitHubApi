@@ -1,6 +1,7 @@
 package com.example.alison.appgithubapi.login
 
 import android.app.Activity
+
 import android.app.Instrumentation
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
@@ -21,27 +22,23 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @RunWith(AndroidJUnit4::class)
 @SmallTest
 class LoginActivityTestIntent {
 
-    companion object {
-        const val EMAIL = "exemplo@exemplo.com"
-        const val PASSWORD = "123"
-    }
-
     @Rule
-    @JvmField var mIntentRule =
+    @JvmField var mIntentLogin =
             IntentsTestRule(LoginActivity::class.java, false, false)
 
     @Before
     fun setup() {
         prepareLogout()
-        mIntentRule.launchActivity(Intent())
     }
 
     @Test
     fun givenClickOnLoginButton_WhenEmailAndPasswordCorrect_ThenShouldShootIntent() {
+        initActivity()
         onView(withId(R.id.edtEmailLogin)).perform(typeText(EMAIL), closeSoftKeyboard())
         onView(withId(R.id.edtPasswordLogin)).perform(typeText(PASSWORD), closeSoftKeyboard())
         val matcher = hasComponent(RepositoryActivity::class.java.name)
@@ -51,9 +48,12 @@ class LoginActivityTestIntent {
         intended(matcher)
     }
 
+    private fun initActivity() {
+        mIntentLogin.launchActivity(Intent())
+    }
+
     private fun prepareLogout() {
         val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())
         preferencesUtil.clearSP()
     }
-
 }

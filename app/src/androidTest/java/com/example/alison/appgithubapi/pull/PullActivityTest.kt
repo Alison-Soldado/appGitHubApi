@@ -23,32 +23,22 @@ class PullActivityTest {
 
     @Test
     fun givenClickItemListRepository_WhenUserRedirectToPull_ThenShouldShowNameRepositoryInToolbar() {
-        prepareUserLogged()
-        initActivity()
     }
 
     @Test
     fun givenClickItemListRepository_WhenUserRedirectToPull_ThenShouldShowNumberIssueOpen() {
-        prepareUserLogged()
-        initActivity()
     }
 
     @Test
     fun givenClickItemListRepository_WhenUserRedirectToPull_ThenShouldShowNumberIssueClose() {
-        prepareUserLogged()
-        initActivity()
     }
 
     @Test
     fun givenClickItemListRepository_WhenUserRedirectToPull_ThenShouldShowListPull() {
-        prepareUserLogged()
-        initActivity()
     }
 
     @Test
     fun givenClickItemListRepository_WhenUserRedirectToPull_ThenShouldShowEmptyState() {
-        prepareUserLogged()
-        initActivity()
     }
 
     private fun prepareUserLogged() {
