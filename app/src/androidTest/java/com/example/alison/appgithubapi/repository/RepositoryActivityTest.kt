@@ -2,8 +2,8 @@ package com.example.alison.appgithubapi.repository
 
 
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
 import android.support.test.InstrumentationRegistry.getInstrumentation
+import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import android.support.test.espresso.action.ViewActions.swipeUp
@@ -106,7 +106,7 @@ class RepositoryActivityTest : BaseInstrumentedTest() {
     }
 
     private fun prepareUserLogged() {
-        val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())
+        val preferencesUtil = PreferencesUtil(getTargetContext())
         preferencesUtil.setSP("email", EMAIL)
         preferencesUtil.setSP("password", PASSWORD)
     }

@@ -17,6 +17,7 @@ class PullRequestDataSource (private val presenter: PullPresenter): DataSource.P
                         .subscribe({ result ->
                             presenter.callBackListPulls(result)
                         }, { error ->
+                            // TODO: Desenvolver cenários de falha na requisição
                             error.printStackTrace()
                         })
         )

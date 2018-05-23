@@ -3,11 +3,11 @@ package com.example.alison.appgithubapi.repository
 import android.app.Activity
 import android.app.Instrumentation
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
+import android.support.test.InstrumentationRegistry.getInstrumentation
+import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.intent.Intents
 import android.support.test.espresso.intent.Intents.intended
 import android.support.test.espresso.intent.Intents.intending
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
@@ -46,15 +46,15 @@ class RepositoryActivityTestIntent : BaseInstrumentedTest() {
         initActivity()
         val matcher = hasComponent(PullActivity::class.java.name)
         val activityResult = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
-        Intents.intending(matcher).respondWith(activityResult)
+        intending(matcher).respondWith(activityResult)
         onView(withId(R.id.rvRepository)).perform(click())
-        Intents.intended(matcher)
+        intended(matcher)
     }
 
     @Test
     fun givenLoginCorrect_WhenLoadDisplayRepository_ThenShootIntentToLogin() {
         initActivity()
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().targetContext)
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
         val matcher = hasComponent(LoginActivity::class.java.name)
         val activityResult = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
         intending(matcher).respondWith(activityResult)
@@ -63,7 +63,7 @@ class RepositoryActivityTestIntent : BaseInstrumentedTest() {
     }
 
     private fun prepareUserLogged() {
-        val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())
+        val preferencesUtil = PreferencesUtil(getTargetContext())
         preferencesUtil.setSP("email", EMAIL)
         preferencesUtil.setSP("password", PASSWORD)
     }

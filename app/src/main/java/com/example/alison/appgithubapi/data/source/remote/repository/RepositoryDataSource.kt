@@ -23,6 +23,7 @@ class RepositoryDataSource(private val presenter: RepositoryPresenter): DataSour
                             result ->
                             presenter.callBackList(result.items)
                         }, { error ->
+                            // TODO: Desenvolver cenários de falha na requisição
                             error.printStackTrace()
                         })
         )

@@ -1,10 +1,9 @@
 package com.example.alison.appgithubapi.login
 
 import android.app.Activity
-
 import android.app.Instrumentation
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
+import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.intent.Intents.intended
@@ -53,7 +52,7 @@ class LoginActivityTestIntent {
     }
 
     private fun prepareLogout() {
-        val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())
+        val preferencesUtil = PreferencesUtil(getTargetContext())
         preferencesUtil.clearSP()
     }
 }

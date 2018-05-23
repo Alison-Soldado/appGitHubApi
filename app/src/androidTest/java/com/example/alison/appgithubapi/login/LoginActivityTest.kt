@@ -1,7 +1,7 @@
 package com.example.alison.appgithubapi.login
 
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
+import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -101,7 +101,7 @@ class LoginActivityTest {
     }
 
     private fun prepareLogout() {
-        val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())
+        val preferencesUtil = PreferencesUtil(getTargetContext())
         preferencesUtil.clearSP()
     }
 

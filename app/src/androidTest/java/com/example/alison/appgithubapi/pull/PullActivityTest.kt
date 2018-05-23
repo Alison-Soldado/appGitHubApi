@@ -1,7 +1,7 @@
 package com.example.alison.appgithubapi.pull
 
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
+import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.filters.SmallTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
@@ -42,7 +42,7 @@ class PullActivityTest {
     }
 
     private fun prepareUserLogged() {
-        val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())
+        val preferencesUtil = PreferencesUtil(getTargetContext())
         preferencesUtil.setSP("email", EMAIL)
         preferencesUtil.setSP("password", PASSWORD)
     }
