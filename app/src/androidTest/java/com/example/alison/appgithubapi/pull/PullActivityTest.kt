@@ -5,7 +5,6 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.filters.SmallTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import com.example.alison.appgithubapi.repository.RepositoryActivityTest
 import com.example.alison.appgithubapi.util.PreferencesUtil
 import org.junit.Rule
 import org.junit.Test
@@ -26,14 +25,12 @@ class PullActivityTest {
     fun givenClickItemListRepository_WhenUserRedirectToPull_ThenShouldShowNameRepositoryInToolbar() {
         prepareUserLogged()
         initActivity()
-        verifyNameToolbar()
     }
 
     @Test
     fun givenClickItemListRepository_WhenUserRedirectToPull_ThenShouldShowNumberIssueOpen() {
         prepareUserLogged()
         initActivity()
-        verifyShowNumberIssueOpen()
     }
 
     @Test
@@ -53,15 +50,6 @@ class PullActivityTest {
         prepareUserLogged()
         initActivity()
     }
-
-    private fun verifyNameToolbar() {
-
-    }
-
-    private fun verifyShowNumberIssueOpen() {
-
-    }
-
 
     private fun prepareUserLogged() {
         val preferencesUtil = PreferencesUtil(InstrumentationRegistry.getTargetContext())

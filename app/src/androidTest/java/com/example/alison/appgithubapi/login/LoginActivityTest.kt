@@ -34,7 +34,6 @@ const val MESSAGE_INCORRECT = "Usuário ou senha incorretos."
 @SmallTest
 class LoginActivityTest {
 
-
     @Rule
     @JvmField var mLoginActivityRule =
             ActivityTestRule(LoginActivity::class.java, false, false)

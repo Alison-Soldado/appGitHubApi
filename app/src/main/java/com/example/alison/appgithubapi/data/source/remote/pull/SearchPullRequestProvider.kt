@@ -1,6 +1,9 @@
+package com.example.alison.appgithubapi.data.source.remote.pull
+
 import com.example.alison.appgithubapi.data.source.remote.GithubApiService
 
 object SearchPullRequestProvider {
 
-    fun provideSearchPullRequest() = SearchPullRequest(GithubApiService.create())
+    var searchPull = SearchPullRequest(GithubApiService.create())
+    fun provideSearchPullRequest() = searchPull
 }

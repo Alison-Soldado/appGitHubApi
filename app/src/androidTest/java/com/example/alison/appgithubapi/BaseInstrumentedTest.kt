@@ -5,15 +5,14 @@ import android.support.test.InstrumentationRegistry
 import br.com.concretesolutions.requestmatcher.InstrumentedTestRequestMatcherRule
 import br.com.concretesolutions.requestmatcher.RequestMatcherRule
 import com.example.alison.appgithubapi.data.source.remote.GithubApiService
-import com.example.alison.appgithubapi.data.source.remote.repository.RepositoryDataSource
+import com.example.alison.appgithubapi.data.source.remote.pull.SearchPullRequest
+import com.example.alison.appgithubapi.data.source.remote.pull.SearchPullRequestProvider
 import com.example.alison.appgithubapi.data.source.remote.repository.SearchRepository
 import com.example.alison.appgithubapi.data.source.remote.repository.SearchRepositoryProvider
-import com.google.gson.GsonBuilder
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Rule
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -27,7 +26,7 @@ open class BaseInstrumentedTest {
     @JvmField
     val serverRule: RequestMatcherRule = InstrumentedTestRequestMatcherRule()
 
-    protected fun setupServerRule() {
+    protected fun setupServerRuleRepository() {
         val url = serverRule.url("/").toString()
 
         val interceptor = HttpLoggingInterceptor()
@@ -44,6 +43,25 @@ open class BaseInstrumentedTest {
                 .create(GithubApiService::class.java)
 
         SearchRepositoryProvider.searchRepository = SearchRepository(api)
+    }
+
+    protected fun setupServerRulePull() {
+        val url = serverRule.url("/").toString()
+
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+
+        val api = Retrofit.Builder()
+                .baseUrl(url)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+                .create(GithubApiService::class.java)
+
+        SearchPullRequestProvider.searchPull = SearchPullRequest(api)
     }
 
     protected fun getApplicationContext(): Context {
@@ -68,7 +86,7 @@ open class BaseInstrumentedTest {
         doWait(DEFAULT_MILLIS)
     }
 
-    protected fun doWait(millis: Long) {
+    private fun doWait(millis: Long) {
         try {
             Thread.sleep(millis)
         } catch (e: Exception) {

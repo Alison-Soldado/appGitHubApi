@@ -1,6 +1,5 @@
 package com.example.alison.appgithubapi.data.source.remote.pull
 
-import SearchPullRequestProvider
 import com.example.alison.appgithubapi.data.source.DataSource
 import com.example.alison.appgithubapi.pull.PullPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers

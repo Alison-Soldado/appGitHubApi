@@ -6,8 +6,9 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
-import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.swipeUp
 import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.SmallTest
 import android.support.test.rule.ActivityTestRule
@@ -71,7 +72,7 @@ class RepositoryActivityTest : BaseInstrumentedTest() {
 
     @Test
     fun givenLoginCorrect_WhenRequestSuccess_ThenShowListRepository() {
-        setupServerRule()
+        setupServerRuleRepository()
         requestListRepository()
         initActivity()
         onView(withId(R.id.rvRepository)).check(matches(isDisplayed()))
@@ -79,15 +80,27 @@ class RepositoryActivityTest : BaseInstrumentedTest() {
 
     @Test
     fun givenScrollToDown_WhenRequestNextList_ThenShowNextListRepository() {
+        setupServerRuleRepository()
+        requestListRepository()
+        initActivity()
+        onView(withId(R.id.rvRepository)).perform(scrollToPosition<RepositoryAdapter.MainViewHolder>(10))
     }
 
     @Test
     fun givenScrollToDown_WhenRequestNextList_ThenShowProgressFooter() {
+        setupServerRuleRepository()
+        requestListRepository()
+        requestNextListRepository()
+        initActivity()
+        onView(withId(R.id.rvRepository)).perform(swipeUp(), swipeUp())
+        onView(withId(R.id.linearFooter)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun givenRequestList_WhenClickButtonLogin_ThenShouldShowEmptyState() {
-
+    fun givenLoginCorrect_WhenRequestFailure_ThenShouldShowEmptyState() {
+        setupServerRuleRepository()
+        requestFailureListRepository()
+        initActivity()
     }
 
     private fun prepareUserLogged() {
@@ -98,6 +111,14 @@ class RepositoryActivityTest : BaseInstrumentedTest() {
 
     private fun requestListRepository() {
         serverRule.addFixture(200, "success_list_repository.json")
+    }
+
+    private fun requestNextListRepository() {
+        serverRule.addFixture(200, "success_next_list_repository.json")
+    }
+
+    private fun requestFailureListRepository() {
+        serverRule.addFixture(403, "failure_request_list_repository.json")
     }
 
     private fun initActivity() {
