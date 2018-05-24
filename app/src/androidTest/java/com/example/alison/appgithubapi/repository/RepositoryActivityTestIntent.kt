@@ -69,7 +69,7 @@ class RepositoryActivityTestIntent : BaseInstrumentedTest() {
     }
 
     private fun requestListRepository() {
-        serverRule.addFixture(200, "success_list_repository.json")
+        serverRule.addFixture(200, "repository/success_list_repository.json")
     }
 
     private fun initActivity() {

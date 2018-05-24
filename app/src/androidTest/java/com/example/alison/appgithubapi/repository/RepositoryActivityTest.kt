@@ -112,15 +112,15 @@ class RepositoryActivityTest : BaseInstrumentedTest() {
     }
 
     private fun requestListRepository() {
-        serverRule.addFixture(200, "success_list_repository.json")
+        serverRule.addFixture(200, "repository/success_list_repository.json")
     }
 
     private fun requestNextListRepository() {
-        serverRule.addFixture(200, "success_next_list_repository.json")
+        serverRule.addFixture(200, "repository/success_next_list_repository.json")
     }
 
     private fun requestFailureListRepository() {
-        serverRule.addFixture(403, "failure_request_list_repository.json")
+        serverRule.addFixture(403, "repository/failure_request_list_repository.json")
     }
 
     private fun initActivity() {
