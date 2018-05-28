@@ -5,7 +5,9 @@ import android.app.Instrumentation
 import android.content.Intent
 import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.*
+import android.support.test.espresso.action.ViewActions.typeText
+import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.intent.Intents.intended
 import android.support.test.espresso.intent.Intents.intending
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
@@ -40,11 +42,11 @@ class LoginActivityTestIntent {
         initActivity()
         onView(withId(R.id.edtEmailLogin)).perform(typeText(EMAIL), closeSoftKeyboard())
         onView(withId(R.id.edtPasswordLogin)).perform(typeText(PASSWORD), closeSoftKeyboard())
-        val matcher = hasComponent(RepositoryActivity::class.java.name)
-        val activityResult = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
-        intending(matcher).respondWith(activityResult)
+        val matcherRepository = hasComponent(RepositoryActivity::class.java.name)
+        val activityResultRepository = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
+        intending(matcherRepository).respondWith(activityResultRepository)
         onView(withId(R.id.btnEnter)).perform(click())
-        intended(matcher)
+        intended(matcherRepository)
     }
 
     private fun initActivity() {

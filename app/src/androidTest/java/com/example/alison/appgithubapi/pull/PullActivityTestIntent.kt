@@ -1,26 +1,24 @@
 package com.example.alison.appgithubapi.pull
 
+import android.app.Activity
+import android.app.Instrumentation.ActivityResult
 import android.content.Intent
 import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.intent.Intents.intending
+import android.support.test.espresso.intent.matcher.IntentMatchers.toPackage
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.withText
+import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.data.model.repository.Items
 import com.example.alison.appgithubapi.util.PreferencesUtil
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
-import android.R.attr.phoneNumber
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.intent.matcher.IntentMatchers.toPackage
-import android.support.test.espresso.intent.Intents.intending
-import android.app.Activity
-import android.app.Instrumentation.ActivityResult
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import com.example.alison.appgithubapi.R
-import org.junit.Ignore
 
 
 class PullActivityTestIntent {

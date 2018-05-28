@@ -44,22 +44,22 @@ class RepositoryActivityTestIntent : BaseInstrumentedTest() {
         setupServerRuleRepository()
         requestListRepository()
         initActivity()
-        val matcher = hasComponent(PullActivity::class.java.name)
-        val activityResult = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
-        intending(matcher).respondWith(activityResult)
+        val matcherPull = hasComponent(PullActivity::class.java.name)
+        val activityResultPull = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
+        intending(matcherPull).respondWith(activityResultPull)
         onView(withId(R.id.rvRepository)).perform(click())
-        intended(matcher)
+        intended(matcherPull)
     }
 
     @Test
     fun givenLoginCorrect_WhenLoadDisplayRepository_ThenShootIntentToLogin() {
         initActivity()
         openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
-        val matcher = hasComponent(LoginActivity::class.java.name)
-        val activityResult = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
-        intending(matcher).respondWith(activityResult)
+        val matcherLogin = hasComponent(LoginActivity::class.java.name)
+        val activityResultLogin = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
+        intending(matcherLogin).respondWith(activityResultLogin)
         onView(withText(TEXT_EXIT_APP)).perform(click())
-        intended(matcher)
+        intended(matcherLogin)
     }
 
     private fun prepareUserLogged() {

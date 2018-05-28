@@ -3,7 +3,10 @@ package com.example.alison.appgithubapi.login
 import android.content.Intent
 import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.*
+import android.support.test.espresso.action.ViewActions.clearText
+import android.support.test.espresso.action.ViewActions.typeText
+import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.RootMatchers.withDecorView
 import android.support.test.espresso.matcher.ViewMatchers.*
