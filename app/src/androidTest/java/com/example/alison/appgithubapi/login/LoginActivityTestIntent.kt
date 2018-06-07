@@ -5,27 +5,26 @@ import android.app.Instrumentation
 import android.content.Intent
 import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.typeText
-import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
-import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.intent.Intents.intended
 import android.support.test.espresso.intent.Intents.intending
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.filters.SmallTest
+import android.support.test.filters.MediumTest
 import android.support.test.runner.AndroidJUnit4
 import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.repository.RepositoryActivity
 import com.example.alison.appgithubapi.util.PreferencesUtil
+import com.example.alison.appgithubapi.utils.EMAIL
+import com.example.alison.appgithubapi.utils.PASSWORD
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-
+@MediumTest
 @RunWith(AndroidJUnit4::class)
-@SmallTest
 class LoginActivityTestIntent {
 
     @Rule

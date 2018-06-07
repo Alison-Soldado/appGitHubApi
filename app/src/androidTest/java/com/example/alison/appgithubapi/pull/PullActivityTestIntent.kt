@@ -12,16 +12,25 @@ import android.support.test.espresso.intent.matcher.IntentMatchers.toPackage
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.filters.MediumTest
+import android.support.test.runner.AndroidJUnit4
 import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.data.model.repository.Items
+import com.example.alison.appgithubapi.data.model.repository.Owner
 import com.example.alison.appgithubapi.util.PreferencesUtil
+import com.example.alison.appgithubapi.utils.EMAIL
+import com.example.alison.appgithubapi.utils.PASSWORD
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
-
+@MediumTest
+@RunWith(AndroidJUnit4::class)
 class PullActivityTestIntent {
+
+    private lateinit var item : Items
 
     @Rule
     @JvmField var mIntentPull =
@@ -29,12 +38,12 @@ class PullActivityTestIntent {
 
     @Before
     fun setup() {
+        prepareIntent()
         prepareUserLogged()
     }
 
     @Test
     fun givenClickListRepository_WhenLoadDisplayPull_ThenGetIntentFired() {
-        prepareIntent()
         initActivity()
     }
 
@@ -70,7 +79,13 @@ class PullActivityTestIntent {
 
     private fun prepareIntent() {
         val intentItemRepository = Intent()
-        val item: Items? = null
+        fillItem()
         intentItemRepository.putExtra("item", item)
+        val result = ActivityResult(Activity.RESULT_OK, intentItemRepository)
+        intending(toPackage(PullActivity::getPackageName::class.java.name)).respondWith(result)
+    }
+
+    private fun fillItem() {
+        item = Items(1, "Alison", "Alison Soldado", Owner(1, "alison", "xzcc", "zxcc", "zxc"), "zxcz", "uhul", 5446, 5445, 54456)
     }
 }

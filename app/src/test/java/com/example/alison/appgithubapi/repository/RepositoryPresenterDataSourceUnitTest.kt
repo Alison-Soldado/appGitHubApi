@@ -1,10 +1,15 @@
 package com.example.alison.appgithubapi.repository
 
+import android.support.test.filters.SmallTest
 import com.example.alison.appgithubapi.data.source.DataSource
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.junit.MockitoJUnitRunner
 
+@SmallTest
+@RunWith(MockitoJUnitRunner::class)
 class RepositoryPresenterDataSourceUnitTest {
 
     @Mock private lateinit var repositoryDataSource : DataSource.RepoDataSource

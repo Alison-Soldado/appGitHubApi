@@ -1,15 +1,19 @@
 package com.example.alison.appgithubapi.repository
 
 
+import android.support.test.filters.SmallTest
 import com.example.alison.appgithubapi.data.model.repository.Items
 import com.example.alison.appgithubapi.data.model.repository.Owner
-import com.example.alison.appgithubapi.data.source.DataSource
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnitRunner
 
+@SmallTest
+@RunWith(MockitoJUnitRunner::class)
 class RepositoryPresenterViewUnitTest {
 
     @Mock private lateinit var repositoryView : RepositoryContract.View

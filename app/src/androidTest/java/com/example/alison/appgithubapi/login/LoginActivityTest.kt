@@ -3,18 +3,16 @@ package com.example.alison.appgithubapi.login
 import android.content.Intent
 import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.clearText
-import android.support.test.espresso.action.ViewActions.typeText
-import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
-import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.RootMatchers.withDecorView
 import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.filters.SmallTest
+import android.support.test.filters.MediumTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.util.PreferencesUtil
+import com.example.alison.appgithubapi.utils.*
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.junit.Before
@@ -22,19 +20,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-const val EMAIL = "exemplo@exemplo.com"
-const val PASSWORD = "123"
-const val EMAIL_INCORRECT = "teste@teste.com"
-const val PASSWORD_INCORRECT = "456"
-const val EMAIL_ERROR = "email error"
-const val MESSAGE_WELCOME = "Bem Vindo!!!"
-const val MESSAGE_ERROR_EMAIL = "Preencha o campo usuário corretamente."
-const val MESSAGE_ERROR_PASSWORD = "Preencha o campo senha corretamente."
-const val MESSAGE_INVALID_EMAIL = "Digite um e-mail válido."
-const val MESSAGE_INCORRECT = "Usuário ou senha incorretos."
-
+@MediumTest
 @RunWith(AndroidJUnit4::class)
-@SmallTest
 class LoginActivityTest {
 
     @Rule

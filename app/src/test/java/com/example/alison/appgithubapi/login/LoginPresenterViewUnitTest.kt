@@ -1,20 +1,25 @@
 package com.example.alison.appgithubapi.login
 
+import android.support.test.filters.SmallTest
 import com.example.alison.appgithubapi.R
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnitRunner
 
+@SmallTest
+@RunWith(MockitoJUnitRunner::class)
 class LoginPresenterViewUnitTest {
 
     companion object {
         const val EMAIL = "exemplo@exemplo.com"
         const val PASSWORD = "123"
+        const val EMAIL_ERROR = "email error"
         const val EMAIL_INCORRECT = "teste@teste.com"
         const val PASSWORD_INCORRECT = "456"
-        const val EMAIL_ERROR = "email error"
         const val EMPTY = ""
     }
 
@@ -32,7 +37,7 @@ class LoginPresenterViewUnitTest {
     @Test
     fun givenEmailEmpty_WhenCallFunLogin_ThenCallFunEmailError(){
         // Act
-        loginPresenter.login(EMPTY, PASSWORD)
+        loginPresenter.login(EMAIL, PASSWORD)
         // Assert
         verify(loginView).setEmailError(R.string.msgErrorEmail)
     }

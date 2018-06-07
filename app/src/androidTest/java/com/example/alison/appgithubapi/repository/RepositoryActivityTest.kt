@@ -9,29 +9,25 @@ import android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import android.support.test.espresso.action.ViewActions.swipeUp
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withParent
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.filters.SmallTest
+import android.support.test.espresso.matcher.ViewMatchers.*
+import android.support.test.filters.MediumTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.example.alison.appgithubapi.BaseInstrumentedTest
 import com.example.alison.appgithubapi.R
 import com.example.alison.appgithubapi.util.PreferencesUtil
+import com.example.alison.appgithubapi.utils.EMAIL
+import com.example.alison.appgithubapi.utils.PASSWORD
+import com.example.alison.appgithubapi.utils.TEXT_EXIT_APP
+import com.example.alison.appgithubapi.utils.TITLE_TOOLBAR_REPOSITORY
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-const val EMAIL = "exemplo@exemplo.com"
-const val PASSWORD = "123"
-const val TITLE_TOOLBAR_REPOSITORY = "Repository"
-const val TEXT_EXIT_APP = "Sair"
-
+@MediumTest
 @RunWith(AndroidJUnit4::class)
-@SmallTest
 class RepositoryActivityTest : BaseInstrumentedTest() {
 
     @Rule

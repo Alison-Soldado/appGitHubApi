@@ -14,20 +14,24 @@ import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.filters.SmallTest
+import android.support.test.filters.MediumTest
 import android.support.test.runner.AndroidJUnit4
 import com.example.alison.appgithubapi.BaseInstrumentedTest
 import com.example.alison.appgithubapi.R
+import com.example.alison.appgithubapi.data.model.repository.Items
 import com.example.alison.appgithubapi.login.LoginActivity
 import com.example.alison.appgithubapi.pull.PullActivity
 import com.example.alison.appgithubapi.util.PreferencesUtil
+import com.example.alison.appgithubapi.utils.EMAIL
+import com.example.alison.appgithubapi.utils.PASSWORD
+import com.example.alison.appgithubapi.utils.TEXT_EXIT_APP
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+@MediumTest
 @RunWith(AndroidJUnit4::class)
-@SmallTest
 class RepositoryActivityTestIntent : BaseInstrumentedTest() {
 
     @Rule
@@ -46,6 +50,21 @@ class RepositoryActivityTestIntent : BaseInstrumentedTest() {
         initActivity()
         val matcherPull = hasComponent(PullActivity::class.java.name)
         val activityResultPull = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
+        intending(matcherPull).respondWith(activityResultPull)
+        onView(withId(R.id.rvRepository)).perform(click())
+        intended(matcherPull)
+    }
+
+    @Test
+    fun givenListRepository_WhenUserClickItem_ThenShootIntentToPullWithItem() {
+        setupServerRuleRepository()
+        requestListRepository()
+        initActivity()
+        val intentItemRepository = Intent()
+        val item: Items? = null
+        intentItemRepository.putExtra("item", item)
+        val matcherPull = hasComponent(PullActivity::class.java.name)
+        val activityResultPull = Instrumentation.ActivityResult(Activity.RESULT_OK, intentItemRepository)
         intending(matcherPull).respondWith(activityResultPull)
         onView(withId(R.id.rvRepository)).perform(click())
         intended(matcherPull)
