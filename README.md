@@ -10,7 +10,7 @@ Na tela inicial você terá que realizar a autenticação, então digite:
 
 ## Arquitetura 
 
-Nele foi utilizado a arquitetura Model-View-Presenter (MVP), pra quem não sabe, ele foi derivado do 
+Foi utilizado a arquitetura Model-View-Presenter (MVP), onde o model, pra quem não sabe, ele foi derivado do
 Model-View-Controller (MVC). O MVP facilita a realização de teste devido separar bem as responsabilidades 
 de cada camada.
 
@@ -18,10 +18,12 @@ de cada camada.
 
 Foi utilizado a biblioteca chamada Retrofit
 
-## Testes Unitários
+## Testes Locais
 
 Foi utilizado a biblioteca chamada Mockito
 
 ## Testes Instrumentados
 
 Foi utilizado a biblioteca chamada Espresso
+
+## Testes Unitários

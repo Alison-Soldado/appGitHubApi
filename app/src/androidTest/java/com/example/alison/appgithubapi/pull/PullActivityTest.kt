@@ -24,12 +24,10 @@ class PullActivityTest : BaseInstrumentedTest() {
 
     @Before
     fun setup() {
-        prepareUserLogged()
     }
 
     @Test
     fun givenClickItemListRepository_WhenUserRedirectToPull_ThenShowNameRepositoryInToolbar() {
-        initActivity()
     }
 
     @Test
