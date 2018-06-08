@@ -18,17 +18,17 @@ de cada camada.
 
 Foi utilizado a biblioteca chamada Retrofit
 
-## Testes Locais
-
-Foi utilizado a biblioteca chamada Mockito
-
-## Testes Instrumentados
-
-Foi utilizado a biblioteca chamada Espresso
-
 ## Testes Unitários
 
-JVM e Emulador
+- __Testes Locais__
+
+    JVM
+    - Foi utilizado a biblioteca chamada Mockito
+
+- __Testes Instrumentados__
+
+    Emulador
+    - Foi utilizado a biblioteca chamada Espresso
 
 ## Relatório de cobertura de código
 
