@@ -27,3 +27,11 @@ Foi utilizado a biblioteca chamada Mockito
 Foi utilizado a biblioteca chamada Espresso
 
 ## Testes Unitários
+
+JVM e Emulador
+
+## Relatório de cobertura de código
+
+Foi utilizado o jacoco
+
+
