@@ -1,34 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'jacoco'
-
-jacoco {
-    toolVersion = '0.8.0'
-}
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
-    def fileFilter = [ '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*' ]
-    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
-    def mainSrc = "$project.projectDir/src/main/kotlin"
-
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: project.buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
-    ])
-}
-
+apply from: "$rootDir/tools/jacoco.gradle"
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -47,6 +20,9 @@ android {
         debug {
             minifyEnabled false
             useProguard false
+            shrinkResources false
+            debuggable false
+            zipAlignEnabled false
             testCoverageEnabled true
             buildConfigField 'String', 'BASE_URL', baseUrl
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -56,6 +32,9 @@ android {
         release {
             minifyEnabled true
             useProguard true
+            debuggable true
+            shrinkResources true
+            zipAlignEnabled true
             buildConfigField 'String', 'BASE_URL', baseUrl
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
@@ -132,9 +111,6 @@ dependencies {
 
     // RequestMatcher
     androidTestImplementation "br.com.concretesolutions:requestmatcher:$rootProject.requestMatcherVersion"
-
-    // Mirror
-    androidTestImplementation "net.vidageek:mirror:1.6.1"
 
     // Espresso
     androidTestImplementation "com.android.support.test:rules:$rootProject.rulesVersion"
