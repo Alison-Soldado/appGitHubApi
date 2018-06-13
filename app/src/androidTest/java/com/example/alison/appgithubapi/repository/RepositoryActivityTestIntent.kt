@@ -25,8 +25,8 @@ import com.example.alison.appgithubapi.util.PreferencesUtil
 import com.example.alison.appgithubapi.utils.EMAIL
 import com.example.alison.appgithubapi.utils.PASSWORD
 import com.example.alison.appgithubapi.utils.TEXT_EXIT_APP
+import com.google.gson.Gson
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -57,14 +57,11 @@ class RepositoryActivityTestIntent : BaseInstrumentedTest() {
     }
 
     @Test
-    @Ignore("Verificar porque não essa afirmando com item")
     fun givenListRepository_WhenUserClickItem_ThenShootIntentToPullWithItem() {
         setupServerRuleRepository()
         requestListRepository()
+        val intentItemRepository = setupItemIntent()
         initActivity()
-        val intentItemRepository = Intent()
-        val item: Items? = null
-        intentItemRepository.putExtra("item", item)
         val matcherPull = hasComponent(PullActivity::class.java.name)
         val activityResultPull = Instrumentation.ActivityResult(Activity.RESULT_OK, intentItemRepository)
         intending(matcherPull).respondWith(activityResultPull)
@@ -95,5 +92,12 @@ class RepositoryActivityTestIntent : BaseInstrumentedTest() {
 
     private fun initActivity() {
         mIntentRepository.launchActivity(Intent())
+    }
+
+    private fun setupItemIntent(): Intent {
+        val intentItemRepository = Intent()
+        val item = Gson().fromJson(readAssetFile("fixtures/item_intent_repository.json"), Items::class.java)
+        intentItemRepository.putExtra("item", item)
+        return intentItemRepository
     }
 }
