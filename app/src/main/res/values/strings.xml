@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppGitHubApi</string>
+    <string name="app_name">BlueAppGitHubApi</string>
     <string name="repository">Repository</string>
     <string name="pull">Pull</string>
 

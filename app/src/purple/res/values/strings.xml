@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">PurpleAppGitHubApi</string>
+    <string name="repository">Repository</string>
+    <string name="pull">Pull</string>
+
+    // Login
+    <string name="title">App GitHub</string>
+    <string name="email">E-mail:</string>
+    <string name="password">Password:</string>
+    <string name="enter">Enter</string>
+    <string name="contentEmail">exemplo@exemplo.com</string>
+    <string name="contentPassword">123</string>
+
+    // Toast
+    <string name="welcome">Welcome!!!</string>
+    <string name="error">Not possible realize operation.</string>
+    <string name="notNetwork">Not network.</string>
+
+    // Erro
+    <string name="msgErrorEmail">Fill field user correctly.</string>
+    <string name="msgErrorPassword">Fill field password correctly.</string>
+    <string name="msgErrorEmailPass">User or password wrong.</string>
+    <string name="msgErrorEmailValid">Type a e-mail valid.</string>
+
+    // Description
+    <string name="descActivity">Display of login</string>
+    <string name="descTitle">Title of application</string>
+    <string name="descEmail">Fill with your e-mail</string>
+    <string name="descPass">Fill with your password</string>
+    <string name="descEnter">Touch for enter</string>
+
+    // Repository
+    <string name="searchRepository">Search</string>
+    <string name="exitApp">Exit</string>
+
+    // Pull Request
+    <string name="open">Opens</string>
+    <string name="close">Closes</string>
+    <string name="bar">/</string>
+</resources>

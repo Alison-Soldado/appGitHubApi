@@ -45,19 +45,32 @@ android {
 
     productFlavors {
         blue {
+            applicationId "com.example.alison.appgithubapi.blue"
             applicationIdSuffix ".blue"
             versionNameSuffix "-blue"
             dimension "default"
         }
 
         purple {
+            applicationId "com.example.alison.appgithubapi.purple"
             applicationIdSuffix ".purple"
             versionNameSuffix "-purple"
             dimension "default"
         }
+
+        ignoreVariant {
+            applicationIdSuffix ".ignoreVariant"
+            versionNameSuffix "-ignoreVariant"
+            dimension "default"
+        }
     }
 
-    // Always show the result of every unit test, even if it passes.
+    variantFilter { variant ->
+        if (variant.flavors*.name.contains("ignoreVariant")) {
+            setIgnore(true)
+        }
+    }
+
     testOptions.unitTests.all {
         testLogging {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
