@@ -41,6 +41,22 @@ android {
         }
     }
 
+    flavorDimensions "default"
+
+    productFlavors {
+        blue {
+            applicationIdSuffix ".blue"
+            versionNameSuffix "-blue"
+            dimension "default"
+        }
+
+        purple {
+            applicationIdSuffix ".purple"
+            versionNameSuffix "-purple"
+            dimension "default"
+        }
+    }
+
     // Always show the result of every unit test, even if it passes.
     testOptions.unitTests.all {
         testLogging {
@@ -55,19 +71,6 @@ android {
 
         unitTests {
             includeAndroidResources = true
-        }
-    }
-
-    flavorDimensions "default"
-
-    productFlavors {
-        blue {
-            applicationIdSuffix = ".mock"
-            dimension "default"
-        }
-
-        purple {
-            dimension "default"
         }
     }
 
