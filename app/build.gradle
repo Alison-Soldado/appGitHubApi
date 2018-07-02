@@ -9,15 +9,32 @@ android {
         applicationId "com.example.alison.appgithubapi"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("$rootDir/distribution/debug.keystore")
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+
+        release {
+            if (System.getenv("KEYSTORE") != null) {
+                storeFile file(System.getenv("KEYSTORE"))
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyAlias System.getenv("KEY_ALIAS")
+                keyPassword System.getenv("KEY_PASSWORD")
+            }
+        }
     }
 
     def baseUrl = '"https://api.github.com/"'
 
     buildTypes {
         debug {
+            signingConfig signingConfigs.debug
             minifyEnabled false
             useProguard false
             shrinkResources false
@@ -30,6 +47,7 @@ android {
         }
 
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             useProguard true
             debuggable true
@@ -46,6 +64,8 @@ android {
     productFlavors {
         blue {
             applicationId "com.example.alison.appgithubapi.blue"
+            versionCode 1
+            versionName "1.0"
             applicationIdSuffix ".blue"
             versionNameSuffix "-blue"
             dimension "default"
@@ -53,6 +73,8 @@ android {
 
         purple {
             applicationId "com.example.alison.appgithubapi.purple"
+            versionCode 1
+            versionName "1.0"
             applicationIdSuffix ".purple"
             versionNameSuffix "-purple"
             dimension "default"
