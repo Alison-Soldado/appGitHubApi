@@ -50,7 +50,7 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled true
             useProguard true
-            debuggable true
+            debuggable false
             shrinkResources true
             zipAlignEnabled true
             buildConfigField 'String', 'BASE_URL', baseUrl
