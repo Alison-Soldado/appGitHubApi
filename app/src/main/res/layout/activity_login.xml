@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:contentDescription="@string/descActivity"
-    tools:context="com.example.alison.appgithubapi.login.LoginActivity">
+    tools:context="com.example.alison.appgithubapi.ui.login.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"

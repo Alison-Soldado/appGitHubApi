@@ -1,7 +1,7 @@
 package com.example.alison.appgithubapi.data.source.remote.repository
 
 import com.example.alison.appgithubapi.data.source.DataSource
-import com.example.alison.appgithubapi.repository.RepositoryPresenter
+import com.example.alison.appgithubapi.ui.repository.RepositoryPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
